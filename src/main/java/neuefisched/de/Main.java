@@ -1,3 +1,6 @@
+package neuefisched.de;
+
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -35,5 +38,30 @@ public class Main {
 
         // Output the result
         System.out.println("Unterschied in Tagen zwischen " + date1 + " und " + date2 + ": " + daysDifference + " Tage");
+
+
+        // Create an instance of the Animal class
+        LocalDate birthday = LocalDate.of(2019, 7, 30);
+        String animalName = "Zorro";
+
+        Animal myAnimal = new Animal(birthday, animalName);
+
+        // Access and print the attributes
+        System.out.println("Animal Name: " + myAnimal.getName());
+        System.out.println("Animal Birthday: " + myAnimal.getBirthday());
+
+
+        // Calculate the number of days left until the next birthday
+        LocalDate currentDate = LocalDate.now();
+        LocalDate nextBirthday = myAnimal.getBirthday().withYear(currentDate.getYear());
+
+        if (nextBirthday.isBefore(currentDate) || nextBirthday.isEqual(currentDate)) {
+            nextBirthday = nextBirthday.plusYears(1);
+        }
+
+        long daysUntilNextBirthday = ChronoUnit.DAYS.between(currentDate, nextBirthday);
+
+        // Output the result
+        System.out.println("Days until the next birthday: " + daysUntilNextBirthday + " days");
     }
 }
